@@ -12,6 +12,13 @@ router.get('/', async (req, res) => {
     res.render('index', { images });
 });
 
+
+router.get('/search', async (req, res) => {
+    const { term } = req.query;
+    const images = await Image.find({description: term});
+    res.render('index', { images });
+});
+
 router.get('/upload', (req, res) => {
     res.render('upload');
 });
@@ -40,6 +47,14 @@ router.get('/image/:id/delete', async (req, res) => {
     const { id } = req.params;
     const imageDeleted = await Image.findByIdAndDelete(id);
     await unlink(path.resolve('./src/public' + imageDeleted.path));
+    res.redirect('/');
+});
+
+router.get('/image/:id/like', async (req, res) => {
+    const { id } = req.params;
+    const imageLike = await Image.findById(id);
+    imageLike.like++;
+    await imageLike.save();
     res.redirect('/');
 });
 

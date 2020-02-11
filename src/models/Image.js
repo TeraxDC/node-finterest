@@ -8,7 +8,8 @@ const imageSchema = new Schema({
     originalname: {type: String},
     mimetype: {type: String},
     size: { type: Number},
-    created_at: {type: Date, default: Date.now()}
+    like: { type : Number, default: 0},
+    created_at: {type: Date, default: new Date()}
 });
 
 module.exports = model('Image', imageSchema);
