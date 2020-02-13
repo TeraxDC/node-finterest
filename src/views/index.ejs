@@ -20,17 +20,22 @@
                 <% images.forEach(function (image) { %>
 
                 <div class="card animated fadeInDown">
-                    <img src="<%= image.path %>" class="card-img-top" alt="<%= image.filename %>">
+                    <a href="/image/<%= image._id %>" class="">
+                        <img src="<%= image.path %>" class="card-img-top" alt="<%= image.filename %>">
+                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%= image.title %></h5>
                         <p class="card-text"><%= image.description %></p>
                         <p><%= format(image.created_at) %></p>
-                        <a href="/image/<%= image._id %>" class="btn btn-primary">
-                           View 
-                        </a>
+                        <div class="p-2 ml-auto">
+                            <a href="/image/<%= image._id%>/like"><i class="fa fa-heart fa-2x text-danger" aria-hidden="true"></i> </a>
+                            <label><%= image.like %></label>
+                        </div>
                     </div>
                 </div>
                 <% }) %>
+
+
             </div>
         </div>
     </div>

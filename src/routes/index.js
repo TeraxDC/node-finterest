@@ -43,4 +43,21 @@ router.get('/image/:id/delete', async (req, res) => {
     res.redirect('/');
 });
 
+router.get('/image/:id/like', async (req, res) => {
+    const { id } = req.params;
+    const imageLike = await Image.findById(id);
+    imageLike.like++;
+    await imageLike.save();
+    res.redirect('/');
+});
+
+router.get('/search', async (req, res) => {
+    const { word } = req.query;
+    const images = await Image.find( { $text: { $search: word } });
+    console.log(images);
+    
+    res.render('index', { images });
+});
+
+
 module.exports = router;

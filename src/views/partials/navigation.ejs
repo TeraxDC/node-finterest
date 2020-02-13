@@ -1,16 +1,52 @@
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">
         <img src="/img/logo.png" style="height: 30px" class="d-inline-block align-top"> Finterest
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+        <form action="/search" method="get" class="form-inline">
+            <input class="form-control mr-sm-2" name="word" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>   
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/upload"><i class="fas fa-upload"></i> Upload</a>
             </li>
         </ul>
+      <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if (user) { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Images 
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/images">All Images</a>
+              <a class="dropdown-item" href="/images/add">Add A Image</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/users/logout">Logout</a>
+            </div>
+          </li>
+        <% } %>
+        <% else {%>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/signin">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/signup">Register</a>
+          </li>
+        <% } %>
+      </ul>
     </div>
+  </div>
 </nav>
